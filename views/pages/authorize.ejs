@@ -12,10 +12,10 @@
 
 <main>
     <div class="jumbotron">
-        <h1>This is great</h1>
-        <p>Welcome to templating using EJS</p>
-        <button class="btn btn-primary" onclick="authorizeApplication(event)">Login</button>
-        <img src="data:image;base64, ${qrCode}" alt="">
+        <h1>Authorize</h1>
+        <p>Copy the following code : <strong><%= userCode %></strong></p>
+        <p>Go to the following url <a href="<%= verificationUri %>" target="_blank"><%= verificationUri %></a></p>
+        <img src="data:image;base64, <%= qrCode  %>" alt="">
     </div>
 </main>
 

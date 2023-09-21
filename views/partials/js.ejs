@@ -1,0 +1,16 @@
+<script>
+    
+    var socket = io();
+    socket.on('connect', function() {
+        console.log('browser client connected')
+    });
+
+    socket.on('success', function(res) {
+        window.location.href=res.auth;
+    });
+
+    function authorizeApplication(event){
+    window.location.href='/authorize'
+    }
+
+</script>

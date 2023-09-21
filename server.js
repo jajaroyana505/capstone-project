@@ -74,7 +74,7 @@ app.get('/authenticated', verifyToken, (req, res) => {
 	console.log('======== Requesting userInfo claims using valid token');
 		deviceFlow.userInfo(req.session.token)
 		.then((response) => {
-			res.render('authenticated', {message: 'successfully authenticated', userInfo: response.response});
+			res.render('pages/authenticated', {message: 'successfully authenticated', userInfo: response.response});
 		}).catch((err) => {
 			res.send(err);
 		});
@@ -85,7 +85,7 @@ app.get('/authorize', (req, res) => {
 		deviceFlow.authorize()
 			.then((response) => {
 				console.log('======== API response: ', response);
-				res.render('authorize', {
+				res.render('pages/authorize', {
 					userCode: response.user_code,
 					verificationUri: response.verification_uri,
 					qrCode: response.verification_uri_complete_qrcode
@@ -132,7 +132,7 @@ function pollToken(device_code, sessionID ) {
 		console.log('========= Token response object: ', response);
 		try {
 			await storage.setItem(sessionID, {...response});
-			await io.emit('success', {auth: '/authenticated'});
+			await io.emit('success', {auth: 'pages/authenticated'});
 		} catch (error) {
 			console.log('========= Error setting sotrage for session');
 			return error;
